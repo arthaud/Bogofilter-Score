@@ -8,13 +8,13 @@
  * A score lower than this is considered a good email
  * @constant {number}
  */
-export const DEFAULT_SCORE_LOWER_BOUNDS = -2.0
+export const DEFAULT_SCORE_LOWER_BOUNDS = 0.1
 
 /**
  * A score higher than this is considered a bad email
  * @constant {number}
  */
-export const DEFAULT_SCORE_UPPER_BOUNDS = 2.0
+export const DEFAULT_SCORE_UPPER_BOUNDS = 0.9
 
 // /**
 //  * Minimum score for SCORE_INTERPOLATION
@@ -42,12 +42,7 @@ export const DEFAULT_SCORE_UPPER_BOUNDS = 2.0
  * @constant {Object<RegExp>}
  */
 export const SCORE_REGEX = {
-  'x-spamd-result': /\[([-+]?[0-9]+\.?[0-9]*) \/ [-+]?[0-9]+\.?[0-9]*\];/,
-  'x-spam-status': /(?:Yes|No)(?:, score=|\/)([-+]?[0-9]+\.?[0-9]*)/,
-  'x-spam-score': /([-+]?[0-9]+\.?[0-9]*)/,
-  'x-spam-report': /([-+]?[0-9]+\.?[0-9]*) hits,/,
-  'x-rspamd-score': /([-+]?[0-9]+\.?[0-9]*)/,
-  'x-vr-spamscore': /([0-9]+)/
+  'x-bogosity': /(?:Ham|Spam|Unsure), tests=bogofilter, spamicity=([-+]?[0-9]+\.?[0-9]*), version=(?:[.0-9]+)/
 }
 
 /**
@@ -55,24 +50,18 @@ export const SCORE_REGEX = {
  * @constant {Object<RegExp>}
  */
 export const CUSTOM_SCORE_REGEX = {
-  'mailscanner-spamcheck':
-    /(?:score|punteggio|puntuació|sgor\/score|skore|Wertung|bedømmelse|puntaje|pont|escore|resultat|skore)=([-+]?[0-9]+\.?[0-9]*),/
 }
 
 /** @constant {RegExp} */
 export const SPAM_HEADER_REGEX =
-  /(X-.*?(?:Spamd-Result|Spam-Report|SpamCheck|Spam-Status|Rspamd-Report):.*(?:\r?\n(?:\t+ *| +).*)*)/g
+  /(X-.*?(?:X-Bogosity):.*(?:\r?\n(?:\t+ *| +).*)*)/g
 
 /**
  * Headers that contain the score details
  * @constant {String[]}
  */
 export const SCORE_DETAILS_ARRAY = [
-  'x-spamd-result',
-  'x-spam-report',
-  'x-spamcheck',
-  'x-spam-status',
-  'x-rspamd-report'
+  'x-bogosity'
 ]
 
 /** @constant {Object<RegExp>} */

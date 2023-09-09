@@ -5,18 +5,11 @@
 
 // Copy of constants.js until Experiments API supports ES6 modules
 const CUSTOM_SCORE_REGEX = {
-  'mailscanner-spamcheck':
-    /(?:score|punteggio|puntuació|sgor\/score|skore|Wertung|bedømmelse|puntaje|pont|escore|resultat|skore)=([-+]?[0-9]+\.?[0-9]*),/
 }
 
 // Copy of constants.js until Experiments API supports ES6 modules
 const SCORE_REGEX = {
-  'x-spamd-result': /\[([-+]?[0-9]+\.?[0-9]*) \/ [-+]?[0-9]+\.?[0-9]*\];/,
-  'x-spam-status': /(?:Yes|No)(?:, score=|\/)([-+]?[0-9]+\.?[0-9]*)/,
-  'x-spam-score': /([-+]?[0-9]+\.?[0-9]*)/,
-  'x-spam-report': /([-+]?[0-9]+\.?[0-9]*) hits,/,
-  'x-rspamd-score': /([-+]?[0-9]+\.?[0-9]*)/,
-  'x-vr-spamscore': /([0-9]+)/
+  'x-bogosity': /(?:Ham|Spam|Unsure), tests=bogofilter, spamicity=([-+]?[0-9]+\.?[0-9]*), version=(?:[.0-9]+)/
 }
 
 /**

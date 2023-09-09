@@ -2,8 +2,8 @@
 const EXTENSION_NAME = 'spamscores@czaenker'
 const extension = WebExtensionPolicy.getByID(EXTENSION_NAME).extension
 
-const DEFAULT_SCORE_LOWER_BOUNDS = -2
-const DEFAULT_SCORE_UPPER_BOUNDS = 2
+const DEFAULT_SCORE_LOWER_BOUNDS = 0.1
+const DEFAULT_SCORE_UPPER_BOUNDS = 0.9
 let scoreHdrViewParams = {
   lowerScoreBounds: DEFAULT_SCORE_LOWER_BOUNDS,
   upperScoreBounds: DEFAULT_SCORE_UPPER_BOUNDS
@@ -137,12 +137,7 @@ function updatePrefs(dynamicHeaders = []) {
   const mailnews = Services.prefs.getBranch('mailnews')
   // Copy of constants.js until support of ES6 modules
   const staticHeaders = [
-    'x-spam-score',
-    'x-rspamd-score',
-    'x-vr-spamscore',
-    'x-spamd-result',
-    'x-spam-status',
-    'x-spam-report'
+    'x-bogosity'
   ]
   const headers = [...staticHeaders, ...dynamicHeaders]
 
